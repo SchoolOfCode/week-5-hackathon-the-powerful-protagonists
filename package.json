@@ -1,0 +1,24 @@
+{
+  "name": "week-5-hackathon-the-powerful-protagonists",
+  "version": "1.0.0",
+  "description": "Feel free to delete this and start from scratch.",
+  "main": "app.js",
+  "bin": {
+    "week-5-hackathon-the-powerful-protagonists": "bin/www.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node -r dotenv/config --watch bin/www.js",
+    "reset-database": "node -r dotenv/config db/scripts/reset-database.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.1"
+  }
+}
+

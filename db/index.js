@@ -1,5 +1,5 @@
 // Import the pg (node-postgres) library
-// import pg from "pg";
+import pg from "pg";
 
 // Retrieve the database connection string from environment variables
 const connectionString = process.env.DB_CONNECTION_STRING;
