@@ -12,6 +12,7 @@ import { pool } from "../db/index.js";
 export async function fetchAllCharacter() {
   try {
     const result = await pool.query("SELECT * FROM character");
+    // tried to changed from result.rows to improve legibilty of data being returned (null = no customisation, 2 = indents by 2 spaces) -- try again as stretch goal
     return result.rows;
   } catch (error) {
     console.error("Error fetching character", error);
