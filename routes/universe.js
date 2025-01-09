@@ -1,5 +1,5 @@
 import express from "express";
-// import { getCharacters } from "../controllers/character.js";
+// import { getUniverse } from "../controllers/universe.js";
 
 // creates a new router object using express
 const router = express.Router();
