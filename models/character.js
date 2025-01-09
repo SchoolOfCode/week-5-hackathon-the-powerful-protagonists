@@ -32,3 +32,28 @@ export async function fetchCharacterById(id) {
     console.error("Error fetching character", error);
   }
 }
+
+// check if universe_id is generated
+export async function insertCharacter(
+  name,
+  universe_id,
+  age,
+  intellect,
+  power,
+  charisma,
+  morality,
+  fun_fact
+) {
+  try {
+    const result = await pool.query(`
+      INSERT INTO character 
+      (name, universe_id, age, intellect, power, charisma, morality, fun_fact) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
+      RETURNING *`,
+      [name, universe_id, age, intellect, power, charisma, morality, fun_fact]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error inserting new character", error);
+  }
+}
