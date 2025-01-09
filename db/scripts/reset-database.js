@@ -9,7 +9,7 @@ async function resetDatabase() {
     // create universe table
     await pool.query(`
             CREATE TABLE universe (
-                id BIGINT PRIMARY KEY generated ALWAYS AS IDENTITY.
+                id BIGINT PRIMARY KEY generated ALWAYS AS IDENTITY,
                 name VARCHAR(255) NOT NULL,
                 description VARCHAR(300),
                 creator VARCHAR(255)

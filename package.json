@@ -1,6 +1,7 @@
 {
   "name": "week-5-hackathon-the-powerful-protagonists",
   "version": "1.0.0",
+  "type": "module",
   "description": "Feel free to delete this and start from scratch.",
   "main": "app.js",
   "bin": {
@@ -21,4 +22,3 @@
     "pg": "^8.13.1"
   }
 }
-
