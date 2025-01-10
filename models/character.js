@@ -72,7 +72,7 @@ export async function deleteCharacter(id) {
   }
 }
 
-/* export async function modifyAuthorById(
+export async function modifyCharacterById(
   name,
   universe_id,
   age,
@@ -80,13 +80,16 @@ export async function deleteCharacter(id) {
   power,
   charisma,
   morality,
-  fun_fact
+  fun_fact,
+  id
 ) {
   try {
-    const result = await pool.query('UPDATE character SET')
+    const result = await pool.query( 'UPDATE character SET name = $1, universe_id = $2, age = $3, intellect = $4, power = $5, charisma = $6, morality = $7, fun_fact = $8 WHERE id = $9 RETURNING *', [name, universe_id, age, intellect, power, charisma, morality, fun_fact, id] );
+    if (result.rows.length === 0) {
+      return null;
+    }
+    return result.rows[0];
   } catch (error) {
-
+    console.error("Error modifying character", error);
   }
 }
-
-*/

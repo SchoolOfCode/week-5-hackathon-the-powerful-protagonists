@@ -15,6 +15,7 @@ async function resetDatabase() {
                 creator VARCHAR(255)
                 );
             `);
+            
     // create character table
     await pool.query(`
             CREATE TABLE character (

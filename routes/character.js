@@ -3,11 +3,10 @@ import {
     getCharacters, 
     getCharacterById,
     createCharacter,
-    deleteCharacterById
+    updateCharacterById,
+    deleteCharacterById,
     } 
     from "../controllers/character.js";
-
-// import { insertCharacter } from "../models/character.js";
 
 // creates a new router object using express
 const router = express.Router();
@@ -15,7 +14,7 @@ const router = express.Router();
 router.get("/", getCharacters);
 router.get("/:id", getCharacterById);
 router.post("/", createCharacter);
-// router.patch("/:id", updateAuthorById);
+router.patch("/:id", updateCharacterById);
 router.delete("/:id", deleteCharacterById);
 
 export default router;

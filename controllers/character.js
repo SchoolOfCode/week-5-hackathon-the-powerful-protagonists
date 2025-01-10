@@ -4,7 +4,8 @@ import {
   fetchAllCharacter, 
   fetchCharacterById,
   insertCharacter,
-  deleteCharacter
+  deleteCharacter,
+  modifyCharacterById
   } from "../models/character.js";
 
 export async function getCharacters(req, res) {
@@ -76,13 +77,41 @@ export async function deleteCharacterById(req, res) {
     res.status(200).json({ message: `Character deleted sucessfully with id of ${id}` }); // 204 no content
    }
 
+   export async function updateCharacterById(req, res) {
+    try {
+      const id = req.params.id;
+      console.log(id)
+      const {
+        name,
+        universe_id,
+        age,
+        intellect,
+        power,
+        charisma,
+        morality,
+        fun_fact,
+      } = req.body;
+  
+      const success = await modifyCharacterById(
+        name,
+        universe_id,
+        age,
+        intellect,
+        power,
+        charisma,
+        morality,
+        fun_fact,
+        id // wasn't passind id 
+      );
 
-// to do - edit validateData so that it confirms request contains all 8 keys
+      res.status(200).json({ message: "success", data: success })
+    } catch (error) {
+      res.status(400).json({ message: "error updating character", status: error });
+    }
+  }
+
 function validateData(data) {
-  // check keys are good using list of permitted key names
-  const permittedKeys = new Set(["name", "universe_id", "age", "morality", "fun_fact", "charisma", "intellect", "power"]);
-  // for each given key check whether its in permitted keys
-  // loop using in
+  const permittedKeys = new Set(["id", "name", "universe_id", "age", "morality", "fun_fact", "charisma", "intellect", "power"]);
   for (const k in data) {
       const hasKey = permittedKeys.has(k);
       if (!hasKey) {
