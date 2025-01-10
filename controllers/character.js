@@ -34,7 +34,7 @@ export async function getCharacterById(req, res) {
 
 export async function createCharacter(req, res){
   try {
-    const isValid = validateData(req.body);
+    const isValid = validateData(req.body); // wasn't passing request body
       console.log(isValid)
     if (!isValid) {
         console.log("validation failed");
@@ -71,10 +71,10 @@ export async function createCharacter(req, res){
 export async function deleteCharacterById(req, res) {
     const id = req.params.id
     if (!validateIdIsNum(id)) {
-      res.status(400).json({ message: "must give an id of digit"})
-    }
+      res.status(400).json({ message: "Must give an id of digit"})
+    };
     await deleteCharacter(id);
-    res.status(200).json({ message: `Character deleted sucessfully with id of ${id}` }); // 204 no content
+    res.status(200).json({ message: `Character deleted sucessfully with id of ${id}` }); 
    }
 
    export async function updateCharacterById(req, res) {
@@ -101,17 +101,16 @@ export async function deleteCharacterById(req, res) {
         charisma,
         morality,
         fun_fact,
-        id // wasn't passind id 
+        id // wasn't passing id 
       );
-
       res.status(200).json({ message: "success", data: success })
     } catch (error) {
-      res.status(400).json({ message: "error updating character", status: error });
+      res.status(400).json({ message: "Error updating character", status: error });
     }
   }
 
 function validateData(data) {
-  const permittedKeys = new Set(["id", "name", "universe_id", "age", "morality", "fun_fact", "charisma", "intellect", "power"]);
+  const permittedKeys = new Set(["id", "name", "universe_id", "age", "morality", "fun_fact", "charisma", "intellect", "power"]); // stores unique values without a specific order
   for (const k in data) {
       const hasKey = permittedKeys.has(k);
       if (!hasKey) {
@@ -123,7 +122,7 @@ function validateData(data) {
  }; 
 
  function validateIdIsNum(id) {
-  const digits = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]); // quicker lookup time
+  const digits = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
     for (const char of id) {
       if (!digits.has(char)) {
         return false;
