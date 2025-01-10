@@ -57,3 +57,36 @@ export async function insertCharacter(
     console.error("Error inserting new character", error);
   }
 }
+
+export async function deleteCharacter(id) {
+  try {
+    const result = await pool.query(`
+      DELETE FROM character 
+      WHERE id = $1
+      `,
+      [id]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error deleting character", error);
+  }
+}
+
+/* export async function modifyAuthorById(
+  name,
+  universe_id,
+  age,
+  intellect,
+  power,
+  charisma,
+  morality,
+  fun_fact
+) {
+  try {
+    const result = await pool.query('UPDATE character SET')
+  } catch (error) {
+
+  }
+}
+
+*/
